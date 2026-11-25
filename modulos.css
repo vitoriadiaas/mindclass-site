@@ -1,0 +1,111 @@
+/* Estilos dos módulos: categorias, calendário, relatórios, histórico, administração, tablets e impressão. */
+.role-tag{font-size:12px;font-weight:800;color:var(--purple);padding:4px 12px;border-radius:50px;background:var(--purple-light);font-family:'Nunito',sans-serif}
+[data-theme="dark"] .role-tag,[data-theme="dark"] .etapa-tag{color:#C4B1FF}
+.tabs.tabs3{grid-template-columns:repeat(3,1fr)}
+
+/* categorias */
+.cat-prova{--cat:#DC2626}.cat-trabalho{--cat:#D9730D}.cat-atividade{--cat:#2879E8}
+.cat-evento{--cat:#7C3AED}.cat-reuniao{--cat:#0D9488}.cat-outro{--cat:#64748B}
+[data-theme="dark"] .cat-prova{--cat:#F87171}[data-theme="dark"] .cat-trabalho{--cat:#FBA94C}[data-theme="dark"] .cat-atividade{--cat:#6AA8FF}
+[data-theme="dark"] .cat-evento{--cat:#B79CFF}[data-theme="dark"] .cat-reuniao{--cat:#2DD4BF}[data-theme="dark"] .cat-outro{--cat:#A3B1C6}
+.cat-bar{width:4px;align-self:stretch;border-radius:4px;background:var(--cat);flex-shrink:0}
+.cat-tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 10px;border-radius:50px;color:var(--cat);border:1px solid var(--cat);white-space:nowrap}
+.cat-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--cat);margin-right:5px}
+
+/* calendário */
+.cal-chip{background:var(--surface-2);color:var(--text-1);border-left:3px solid var(--cat)}
+.cal-legenda{flex-wrap:wrap}
+.cal-head h2{text-transform:none}.cal-head h2::first-letter{text-transform:uppercase}
+.sem-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.sem-col{display:flex;flex-direction:column;gap:6px;min-height:240px;padding:6px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text-1);font:inherit;text-align:left;cursor:pointer}
+.sem-col.sel{border-color:var(--purple);box-shadow:0 0 0 2px rgba(108,43,217,.25)}
+.sem-col.hoje .sem-h{background:var(--grad-purple);color:#fff}
+.sem-h{display:block;text-align:center;font-size:12px;font-weight:800;text-transform:uppercase;border-radius:8px;padding:5px 2px;color:var(--text-2)}
+.sem-itens{display:flex;flex-direction:column;gap:5px;min-width:0}
+.sem-item{display:block;font-size:12px;border-left:3px solid var(--cat);background:var(--surface-2);border-radius:6px;padding:4px 6px;overflow-wrap:anywhere}
+.sem-item small{display:block;color:var(--text-2);font-size:10px;font-weight:700}
+.sem-vazio{text-align:center;color:var(--text-3)}
+
+/* relatórios */
+.rel-nome{font-size:18px;margin-bottom:14px}
+.rel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}
+.rel-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--shadow-sm);margin-bottom:14px;min-width:0}
+.rel-grid .rel-card{margin-bottom:0}
+.barras{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.barra-l{display:grid;grid-template-columns:minmax(80px,34%) 1fr auto;gap:10px;align-items:center;font-size:13px}
+.barra-r{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2);font-weight:600}
+.barra-t{position:relative;height:12px;background:var(--surface-2);border-radius:50px}
+.barra-v{position:absolute;inset:0 auto 0 0;border-radius:50px;background:var(--grad-purple)}
+.barra-v.alerta{background:#DC2626}
+.barra-m{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--text-2)}
+.grafico{width:100%;height:auto}
+.grafico text{fill:var(--text-3);font-size:12px}
+.grafico .g-linha{stroke:var(--border);stroke-width:1}
+.grafico .g-minima{stroke:var(--text-2);stroke-width:1.5;stroke-dasharray:6 5}
+.legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-2)}
+.legenda i{display:inline-block;width:14px;height:4px;border-radius:4px;margin-right:5px;vertical-align:middle}
+.legenda i.traco{height:0;border-top:2px dashed var(--text-2)}
+tr.em-atencao td:first-child{box-shadow:inset 3px 0 0 #DC2626}
+.so-impressao{display:none}
+
+/* histórico */
+.hist-dia{margin-top:18px}
+.hist-notas{display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:18px}
+.hist-notas span{color:var(--text-3)}.hist-notas i{font-style:normal;color:var(--text-3)}.hist-notas b{font-size:22px}
+.paginacao{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:14px;font-size:13px;color:var(--text-2)}
+
+/* administração */
+.aviso-acao{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.row-card.inativo{opacity:.65}
+.pend-item{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 14px;border-radius:50px;border:2px solid var(--border);font-size:13px;font-weight:700}
+.pend-item button{width:30px;height:30px;border-radius:50%;border:0;cursor:pointer;background:rgba(22,163,74,.15);color:#16A34A;font-weight:900}
+.pend-item button.nao{background:rgba(220,38,38,.12);color:#DC2626}
+.grades-table.aud td{font-size:13px;white-space:nowrap;text-align:left}
+
+/* tablets */
+@media(min-width:769px) and (max-width:1100px){
+  .sidebar{width:190px}
+  .main-content{padding:22px 18px 36px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .rel-grid{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+}
+@media(max-width:1000px){.rel-grid{grid-template-columns:1fr}}
+@media(max-width:1200px){.sem-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.sem-col{min-height:150px}}
+@media(max-width:600px){
+  .sem-grid{grid-template-columns:1fr}.sem-col{min-height:0}.sem-h{text-align:left;padding-left:8px}
+  .cal-chip{background:var(--cat);border:0}
+  .barra-l{grid-template-columns:minmax(70px,38%) 1fr auto;gap:6px;font-size:12px}
+  .hist-notas{margin-left:16px}
+}
+
+/* impressão / "Salvar como PDF" */
+@media print{
+  :root,[data-theme="dark"]{--bg:#fff;--surface:#fff;--surface-2:#EEEAF8;--border:#D8D2EC;--text-1:#14102B;--text-2:#45436B;--text-3:#6B688F;--purple-light:#EDE9FF}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none!important;animation:none!important}
+  @page{margin:14mm}
+  body{background:#fff}
+  #app{padding:0}
+  .navbar,.sidebar,.mob-nav,.drawer-overlay,.account-drawer,#toasts,.nao-imprime,body::before{display:none!important}
+  .app-layout{display:block}
+  .main-content{padding:0!important}
+  .page{animation:none}
+  .so-impressao{display:flex;gap:12px;align-items:center;border-bottom:2px solid #6C2BD9;padding-bottom:10px;margin-bottom:14px}
+  .so-impressao img{width:52px;height:52px;object-fit:contain}
+  .so-impressao h1{font-size:18px}.so-impressao p{font-size:11px;color:#45436B}
+  .rel-grid{grid-template-columns:1fr 1fr}
+  .rel-card,.stat-card{break-inside:avoid}
+  .stats-row{grid-template-columns:repeat(4,1fr)}
+  .table-scroll{overflow:visible}
+  .grades-table{min-width:0}.grades-table td,.grades-table th{padding:6px;font-size:11px}
+}
+
+/* página inicial com os três perfis */
+.cta-inner.cta-tres{grid-template-columns:1fr;gap:28px}
+.cta-tres .cta-left{text-align:center;max-width:760px;margin:0 auto}
+.cta-tres .cta-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cta-tres .cta-card{display:flex;flex-direction:column;align-items:flex-start}
+.cta-tres .cta-card-list{flex:1}
+.cta-card-admin{background:linear-gradient(135deg,#0F4C5C,#0D9488)}
+.cta-card.cta-card-admin .btn-white{color:#0F4C5C}
+@media(max-width:900px){.cta-tres .cta-cards{grid-template-columns:1fr}}

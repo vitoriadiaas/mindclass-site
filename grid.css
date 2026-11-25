@@ -1,0 +1,152 @@
+/* =====================================================================
+   SISTEMA DE GRID DO MINDCLASS
+   Celular  até 768px   : 1 coluna, barra de navegação inferior
+   Tablet   769–1199px  : menu lateral compacto (trilho de ícones), 1–2 colunas
+   Desktop  1200px+     : menu lateral completo, grid de 12 colunas
+   Espaçamento em múltiplos de 8px; conteúdo com largura máxima e centralizado.
+   ===================================================================== */
+:root{--sp-1:8px;--sp-2:12px;--sp-3:16px;--sp-4:24px;--sp-5:32px;--gap:var(--sp-3);--conteudo:1280px}
+
+.main-content{container-type:inline-size;container-name:conteudo}
+.container{width:100%;max-width:var(--conteudo);margin-inline:auto}
+.pg-notificacoes,.pg-historico{max-width:960px}
+.pg-avisos{max-width:720px}
+
+/* cabeçalho de página e ritmo vertical */
+.page-title{line-height:1.2;margin-bottom:4px}
+.page-sub{margin-bottom:var(--sp-4);max-width:75ch}
+.section-title{line-height:1.3;min-height:24px}
+
+/* grid de 12 colunas */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:start}
+.grid>*{grid-column:1/-1;min-width:0}
+.stack{display:flex;flex-direction:column;gap:var(--gap);min-width:0}
+.painel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--shadow-sm);padding:20px;min-width:0}
+.painel>.section-title,.painel>.resumo-top .section-title{margin-top:0!important}
+
+/* dentro de pilhas e painéis o espaçamento vem do "gap", não de margens soltas */
+.stack>*{margin-top:0!important;margin-bottom:0!important}
+.stack .resumo-top{margin:0 0 var(--sp-2)!important}
+.painel .row-card{box-shadow:none;background:var(--bg);margin-bottom:var(--sp-1)}
+.painel .row-card:last-child{margin-bottom:0}
+.painel .empty{padding:var(--sp-4) var(--sp-3)}
+.painel .empty-icon{font-size:32px;margin-bottom:var(--sp-1)}
+
+.painel .row-card>.grow{flex-basis:140px}
+.etapas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:var(--gap);align-items:start}
+
+/* cartões de usuário: dados em cima, ações alinhadas na base */
+.pg-usuarios .cards .row-card{align-content:space-between;row-gap:12px}
+.pg-usuarios .cards .row-card>.grow{flex:1 1 calc(100% - 64px)}
+
+/* indicadores */
+.stats-row{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);margin-bottom:var(--gap)}
+
+/* listas em cartões: preenchem as colunas disponíveis com a mesma altura */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:var(--sp-2);align-items:stretch}
+.cards>*{margin:0!important;min-width:0}
+
+/* conteúdo + painel lateral (formulários) */
+.split{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-4);align-items:start}
+.split>*{min-width:0}
+.split-aside .form-wrap{margin-bottom:0}
+.split-aside>.section-title{margin-top:0!important}
+
+/* formulários: campos alinhados em colunas iguais */
+.form-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--sp-2) var(--sp-3);align-items:end}
+.form-wrap{padding:20px}
+.toolbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:var(--sp-2) var(--sp-3);align-items:end;margin-bottom:var(--sp-4)}
+.toolbar>div{min-width:0}
+.toolbar>.btn{justify-content:center;justify-self:start}
+.field-row{gap:var(--sp-3)}
+.row-card{flex-wrap:wrap}
+.row-card>.grow{flex:1 1 200px}
+
+/* tabelas ocupam o cartão inteiro */
+.grades-table th,.grades-table td{padding:12px 14px}
+
+/* ---------- desktop ---------- */
+@media(min-width:1200px){
+  :root{--gap:var(--sp-4)}
+  .main-content{padding:var(--sp-5) var(--sp-5) 48px}
+  .sidebar{width:240px}
+  .col-3{grid-column:span 3!important}.col-4{grid-column:span 4!important}.col-5{grid-column:span 5!important}
+  .col-6{grid-column:span 6!important}.col-7{grid-column:span 7!important}.col-8{grid-column:span 8!important}
+}
+/* o painel lateral depende do espaço realmente disponível, não só da largura da tela */
+@container conteudo (min-width:980px){
+  .split{grid-template-columns:minmax(0,1fr) 360px}
+  .split>.split-aside{grid-column:2;grid-row:1;position:sticky;top:88px;max-height:calc(100vh - 104px);overflow:auto}
+  .split>.split-main{grid-column:1;grid-row:1}
+  .split-aside .form-grid{grid-template-columns:1fr}
+}
+@container conteudo (max-width:1199px){
+  .split-grade{grid-template-columns:minmax(0,1fr)!important}
+  .split-grade>*{grid-column:1!important;grid-row:auto!important;position:static!important;max-height:none!important}
+  .split-grade .split-aside .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@container conteudo (max-width:640px){
+  .split-grade .split-aside .form-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.cal-layout{grid-template-columns:minmax(0,1fr);gap:var(--gap)}
+@container conteudo (min-width:1000px){
+  .cal-layout{grid-template-columns:minmax(0,2fr) minmax(320px,1fr)}
+}
+
+/* ---------- tablet: trilho de navegação ---------- */
+@media(min-width:769px) and (max-width:1199px){
+  .sidebar{width:92px;padding:var(--sp-1) 0}
+  .sidebar-label{display:none}
+  .sidebar-item{flex-direction:column;justify-content:center;gap:4px;text-align:center;font-size:11px;line-height:1.15;padding:10px 4px;overflow-wrap:anywhere}
+  .sidebar-item .ic{width:22px;height:22px}
+  .sidebar-bottom{margin:0 var(--sp-1)}
+  .main-content{padding:var(--sp-4) var(--sp-4) 40px}
+  .col-t6{grid-column:span 6!important}
+  .rel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:769px) and (max-width:960px){.rel-grid{grid-template-columns:1fr}}
+
+/* ---------- celular ---------- */
+@media(max-width:768px){
+  :root{--gap:var(--sp-2)}
+  .page-sub{margin-bottom:var(--sp-3)}
+  .painel{padding:14px}
+  .form-wrap{padding:14px}
+  .toolbar{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:var(--sp-3)}
+  .toolbar>.btn{justify-self:stretch}
+  .split{gap:var(--sp-3)}
+}
+@media(max-width:420px){.toolbar{grid-template-columns:1fr}}
+
+/* ---------- página inicial pública ---------- */
+.features-grid,.cta-inner,.footer-inner{max-width:1200px;margin-inline:auto}
+@media(min-width:901px){.hero{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;padding-inline:max(32px,calc((100% - 1200px)/2))}}
+@media(min-width:769px) and (max-width:1199px){.features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media print{.split,.grid{display:block}.container{max-width:none}}
+
+/* ---------- cabeçalho alinhado ao corpo ----------
+   Área logada: a logo alinha com os ícones do menu e as ações terminam na mesma linha do conteúdo.
+   Páginas públicas: cabeçalho, seções e rodapé usam as mesmas margens. */
+:root{--lateral:240px;--margem:32px;--logo-x:17px;--pub-max:1200px;--pub-min:32px}
+.navbar{padding-left:var(--logo-x);padding-right:calc(var(--margem) + max(0px,(100% - var(--lateral) - 2 * var(--margem) - var(--conteudo)) / 2))}
+@media(min-width:769px) and (max-width:1199px){:root{--lateral:92px;--margem:24px;--logo-x:26px}}
+@media(max-width:768px){:root{--lateral:0px;--margem:14px;--logo-x:14px;--pub-min:16px}
+  .navbar{padding-left:max(var(--logo-x),env(safe-area-inset-left,0px));padding-right:max(var(--margem),env(safe-area-inset-right,0px))}}
+.navbar.publica,.hero,.features-strip,.cta-section,.footer{padding-left:max(var(--pub-min),(100% - var(--pub-max)) / 2);padding-right:max(var(--pub-min),(100% - var(--pub-max)) / 2)}
+.features-grid,.cta-inner,.footer-inner{max-width:var(--pub-max)}
+.hero-left{padding-left:0}
+.cta-tres .cta-left{max-width:760px}
+
+/* ---------- arte da página inicial: formas centralizadas atrás da logo ---------- */
+.hero-arte{position:relative;width:min(540px,100%);aspect-ratio:1;display:grid;place-items:center;isolation:isolate}
+.hero-arte .hero-blob,.hero-arte .hero-blob-2{position:absolute;top:auto;right:auto;z-index:-1}
+.hero-arte .hero-blob{inset:0;width:auto;height:auto;border-radius:58% 42% 55% 45% / 48% 55% 45% 52%}
+.hero-arte .hero-blob-2{inset:9%;width:auto;height:auto;border-radius:44% 56% 43% 57% / 56% 45% 55% 44%}
+.hero-arte .hero-logo{width:90%;max-width:none;height:auto}
+@media(max-width:900px){.hero-arte{width:min(300px,82%);margin-inline:auto}.hero-arte .hero-logo{width:90%;margin:0}}
+
+/* formas propositalmente desencontradas (a logo continua no centro) */
+.hero-arte .hero-blob{inset:2% 14% 14% 0;transform:rotate(-14deg)}
+.hero-arte .hero-blob-2{inset:22% 0 0 24%;transform:rotate(20deg)}
